@@ -664,6 +664,10 @@ h1{font-size:clamp(56px, 8vw, 104px); display:flex; align-items:center; gap:18px
   .foot-brand{justify-content:center;flex-wrap:wrap}
   .foot-ca{text-align:center}
   .nav-links{display:none}
+
+  /* На мобиле/планшете: бренд слева, RU/EN + Telegram — компактной группой справа */
+  .nav{ justify-content: flex-start }
+  .lang-switch{ margin-left: auto }
 }
 
 /* Мобила — основной кейс заказчика */
