@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>$MISHKA — мем-токен помощи приютам в TON</title>
+<meta name="description" content="$MISHKA — благотворительный мем-токен в сети TON. Комиссии каждой транзакции собираются в Weekend Pool и идут на корм для приютов собак и котов." />
+<meta name="theme-color" content="#fbf1dc" />
+
+<meta property="og:title" content="$MISHKA — мем-токен помощи приютам" />
+<meta property="og:description" content="Каждая транзакция кормит собак. Weekend Pool в сети TON." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="styles.css?v=5" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+
+<!-- Декоративный фоновый слой -->
+<div class="bg-decor" aria-hidden="true">
+  <svg class="paw paw-1" viewBox="0 0 64 64"><use href="#paw"/></svg>
+  <svg class="paw paw-2" viewBox="0 0 64 64"><use href="#paw"/></svg>
+  <svg class="paw paw-3" viewBox="0 0 64 64"><use href="#paw"/></svg>
+  <svg class="paw paw-4" viewBox="0 0 64 64"><use href="#paw"/></svg>
+  <svg class="bone bone-1" viewBox="0 0 64 32"><use href="#bone"/></svg>
+  <svg class="bone bone-2" viewBox="0 0 64 32"><use href="#bone"/></svg>
+  <svg class="sparkle sp-1" viewBox="0 0 24 24"><use href="#sparkle"/></svg>
+  <svg class="sparkle sp-2" viewBox="0 0 24 24"><use href="#sparkle"/></svg>
+  <svg class="sparkle sp-3" viewBox="0 0 24 24"><use href="#sparkle"/></svg>
+</div>
+
+<!-- Скрытые SVG-символы, переиспользуем по сайту -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="paw" viewBox="0 0 64 64">
+      <g fill="currentColor">
+        <ellipse cx="32" cy="40" rx="14" ry="11"/>
+        <ellipse cx="14" cy="26" rx="6" ry="8"/>
+        <ellipse cx="50" cy="26" rx="6" ry="8"/>
+        <ellipse cx="22" cy="14" rx="5" ry="7"/>
+        <ellipse cx="42" cy="14" rx="5" ry="7"/>
+      </g>
+    </symbol>
+    <symbol id="bone" viewBox="0 0 64 32">
+      <path fill="currentColor" d="M10 16c-5 0-9-3-9-8 0-4 3-7 7-7 3 0 6 2 7 5 1-2 3-3 5-3h24c2 0 4 1 5 3 1-3 4-5 7-5 4 0 7 3 7 7 0 5-4 8-9 8 5 0 9 3 9 8 0 4-3 7-7 7-3 0-6-2-7-5-1 2-3 3-5 3H20c-2 0-4-1-5-3-1 3-4 5-7 5-4 0-7-3-7-7 0-5 4-8 9-8z"/>
+    </symbol>
+    <symbol id="sparkle" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2l1.8 6.4L20 10l-6.2 1.6L12 18l-1.8-6.4L4 10l6.2-1.6z"/>
+    </symbol>
+    <symbol id="heart" viewBox="0 0 32 28">
+      <path fill="currentColor" d="M16 27S2 18 2 9.5C2 5 5.5 2 9.5 2 12 2 14.5 3.5 16 6c1.5-2.5 4-4 6.5-4C26.5 2 30 5 30 9.5 30 18 16 27 16 27z"/>
+    </symbol>
+    <symbol id="coin" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="28" fill="#e7b94a"/>
+      <circle cx="32" cy="32" r="22" fill="#f3cf6b"/>
+      <text x="32" y="42" text-anchor="middle" font-family="Fraunces,serif" font-weight="900" font-size="28" fill="#8a5a16">$</text>
+    </symbol>
+    <symbol id="ton-diamond" viewBox="0 0 56 56">
+      <path d="M28 6h22a4 4 0 0 1 3.5 6L31 50.5a3.4 3.4 0 0 1-6 0L2.5 12A4 4 0 0 1 6 6h22z" fill="#0098EA"/>
+      <path d="M28 12v32l-15-29c-.5-1 .2-3 1.6-3H28zm0 0h13.4c1.4 0 2 2 1.6 3L28 44V12z" fill="#fff" fill-opacity=".22"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ШАПКА -->
+<header class="nav">
+  <a href="#top" class="brand">
+    <span class="brand-mark"><svg viewBox="0 0 64 64"><use href="#paw"/></svg></span>
+    <span class="brand-name">$MISHKA</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#life" data-i18n="nav.life">Приют</a>
+    <a href="#how" data-i18n="nav.how">Как это работает</a>
+    <a href="#transparency" data-i18n="nav.transparency">Прозрачность</a>
+    <a href="#buy" data-i18n="nav.buy">Купить</a>
+    <a href="#tokenomics" data-i18n="nav.tokenomics">Токеномика</a>
+  </nav>
+
+  <div class="lang-switch" role="group" aria-label="Language">
+    <button type="button" data-lang="ru" class="lang-btn is-active">RU</button>
+    <button type="button" data-lang="en" class="lang-btn">EN</button>
+  </div>
+
+  <a class="btn btn-pill" href="https://t.me/mishka_charity" target="_blank" rel="noopener" aria-label="Telegram">
+    <svg class="pill-tg-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.04 15.36 8.88 19.5c.36 0 .52-.16.71-.34l1.7-1.62 3.53 2.58c.65.36 1.11.17 1.28-.6l2.32-10.86c.22-.99-.36-1.38-.99-1.15L3.5 10.45c-.97.38-.96.92-.17 1.17l3.78 1.18 8.78-5.54c.41-.27.79-.12.48.16z"/></svg>
+    <span class="pill-label" data-i18n="nav.telegram">Telegram</span>
+    <span class="arrow" aria-hidden="true">→</span>
+  </a>
+</header>
+
+<!-- HERO -->
+<main id="top">
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow"><svg viewBox="0 0 32 28" class="ico"><use href="#heart"/></svg> <span data-i18n="hero.eyebrow">благотворительный мем в TON</span></span>
+      <h1>
+        <span class="title-mark">$MISHKA</span>
+        <svg class="title-heart" viewBox="0 0 32 28"><use href="#heart"/></svg>
+      </h1>
+      <p class="lead" data-i18n-html="hero.lead">
+        Каждая транзакция кормит хвостатых. Комиссии копятся в&nbsp;<b>Weekend&nbsp;Pool</b>,
+        сообщество выбирает приют, а деньги идут на корм для собак и&nbsp;котов.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#buy" data-i18n="hero.cta_buy">Купить $MISHKA</a>
+        <a class="btn btn-ghost" href="#how" data-i18n="hero.cta_how">Как это работает</a>
+      </div>
+
+      <div class="hero-stats">
+        <div><b>TON</b><span data-i18n="hero.stat_ton">blockchain</span></div>
+        <div><b data-i18n="hero.stat_steps_n">4 шага</b><span>Weekend Pool</span></div>
+        <div><b>100%</b><span data-i18n="hero.stat_transparent">прозрачно on-chain</span></div>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="mascot-stage">
+        <!-- Подложка-стикер -->
+        <div class="mascot-sticker">
+          <img id="mascotImg" class="mascot-photo" src="assets/mishka.jpg" alt="$MISHKA mascot" onerror="this.classList.add('is-missing')" />
+          <div class="mascot-fallback" aria-hidden="true">
+            <span>🐶</span>
+            <small>положи&nbsp;картинку&nbsp;в&nbsp;<code>assets/mishka.png</code></small>
+          </div>
+        </div>
+
+        <!-- Флоатящие ассеты -->
+        <svg class="float coin-1" viewBox="0 0 64 64"><use href="#coin"/></svg>
+        <svg class="float coin-2" viewBox="0 0 64 64"><use href="#coin"/></svg>
+        <svg class="float bone-art" viewBox="0 0 64 32"><use href="#bone"/></svg>
+        <svg class="float heart-art" viewBox="0 0 32 28"><use href="#heart"/></svg>
+        <svg class="float sparkle-art" viewBox="0 0 24 24"><use href="#sparkle"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIFE / VIDEO GALLERY -->
+<section id="life" class="section life">
+  <div class="section-head">
+    <span class="kicker" data-i18n="life.kicker">Жизнь приюта</span>
+    <h2 data-i18n="life.title">Те, ради кого всё это</h2>
+    <p class="muted" data-i18n-html="life.subtitle">Реальные кадры: закупка корма, собаки и&nbsp;коты, волонтёрская смена. Кликни на&nbsp;карточку, чтобы посмотреть со&nbsp;звуком.</p>
+  </div>
+
+  <div class="video-grid">
+    <button class="vcard" data-src="assets/v1.mp4" data-i18n-caption="life.v1_caption" data-caption="Закупка корма — чек из зоомагазина ERA, мешок Simba">
+      <video src="assets/v1.mp4" poster="assets/v1.jpg" muted loop playsinline preload="none"></video>
+      <div class="vcard-meta">
+        <span class="vcard-tag" data-i18n="life.v1_tag">Закупка корма</span>
+        <span class="vcard-title" data-i18n="life.v1_title">Чек из ERA — мешок Simba</span>
+      </div>
+    </button>
+
+    <button class="vcard" data-src="assets/v2.mp4" data-i18n-caption="life.v2_caption" data-caption="Рыжие подопечные приюта">
+      <video src="assets/v2.mp4" poster="assets/v2.jpg" muted loop playsinline preload="none"></video>
+      <div class="vcard-meta">
+        <span class="vcard-tag" data-i18n="life.v2_tag">Собаки</span>
+        <span class="vcard-title" data-i18n="life.v2_title">Подопечные приюта</span>
+      </div>
+    </button>
+
+    <button class="vcard" data-src="assets/v3.mp4" data-i18n-caption="life.v3_caption" data-caption="Котодомики — кошачья комната приюта">
+      <video src="assets/v3.mp4" poster="assets/v3.jpg" muted loop playsinline preload="none"></video>
+      <div class="vcard-meta">
+        <span class="vcard-tag" data-i18n="life.v3_tag">Коты</span>
+        <span class="vcard-title" data-i18n="life.v3_title">Кошачья комната</span>
+      </div>
+    </button>
+
+    <button class="vcard" data-src="assets/v4.mp4" data-i18n-caption="life.v4_caption" data-caption="Волонтёрская смена — кормление во дворе">
+      <video src="assets/v4.mp4" poster="assets/v4.jpg" muted loop playsinline preload="none"></video>
+      <div class="vcard-meta">
+        <span class="vcard-tag" data-i18n="life.v4_tag">Волонтёры</span>
+        <span class="vcard-title" data-i18n="life.v4_title">Смена во дворе</span>
+      </div>
+    </button>
+  </div>
+</section>
+
+<!-- HOW IT WORKS — Weekend Pool (повторяет инфографику) -->
+<section id="how" class="section how">
+  <div class="section-head">
+    <span class="kicker" data-i18n="how.kicker">Weekend Pool</span>
+    <h2 data-i18n-html="how.title">Как комиссии превращаются <br/>в&nbsp;корм для приютов</h2>
+    <p class="muted" data-i18n-html="how.subtitle">Четыре шага от транзакции до миски с едой. Всё прозрачно — каждый этап виден в&nbsp;TON-блокчейне.</p>
+  </div>
+
+  <ol class="steps">
+    <li class="step" style="--i:0">
+      <div class="step-num"><span>1</span></div>
+      <div class="step-icon"><svg viewBox="0 0 64 64"><use href="#coin"/></svg></div>
+      <h3 data-i18n="how.s1_title">Каждая транзакция — комиссия</h3>
+      <p data-i18n-html="how.s1_text">Часть каждой покупки и продажи $MISHKA автоматически поступает в&nbsp;общий пул.</p>
+    </li>
+    <li class="step" style="--i:1">
+      <div class="step-num"><span>2</span></div>
+      <div class="step-icon">
+        <svg viewBox="0 0 64 64">
+          <path d="M14 36c0-12 8-20 18-20s18 8 18 20v6H14z" fill="#c98a3e"/>
+          <ellipse cx="32" cy="36" rx="20" ry="5" fill="#e7b94a"/>
+          <use href="#coin" x="22" y="14" width="20" height="20"/>
+        </svg>
+      </div>
+      <h3 data-i18n="how.s2_title">Пул копится всю неделю</h3>
+      <p data-i18n-html="how.s2_text">Все комиссии собираются в&nbsp;единый Weekly&nbsp;Pot. К&nbsp;выходным мы знаем итог.</p>
+    </li>
+    <li class="step" style="--i:2">
+      <div class="step-num"><span>3</span></div>
+      <div class="step-icon">
+        <svg viewBox="0 0 64 64">
+          <circle cx="32" cy="22" r="9" fill="#c98a3e"/>
+          <path d="M14 52c0-10 8-16 18-16s18 6 18 16z" fill="#c98a3e"/>
+          <path d="M40 18l4 4 8-8" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 data-i18n="how.s3_title">Сообщество голосует</h3>
+      <p data-i18n-html="how.s3_text">Голосование в&nbsp;Telegram&nbsp;— холдеры выбирают приют, который получит помощь.</p>
+    </li>
+    <li class="step" style="--i:3">
+      <div class="step-num"><span>4</span></div>
+      <div class="step-icon">
+        <svg viewBox="0 0 64 64">
+          <rect x="14" y="20" width="36" height="34" rx="3" fill="#d8a063"/>
+          <rect x="14" y="20" width="36" height="6" fill="#b87b3f"/>
+          <path d="M22 14h20l-2 6H24z" fill="#b87b3f"/>
+          <circle cx="32" cy="38" r="6" fill="#fff" opacity=".7"/>
+        </svg>
+      </div>
+      <h3 data-i18n="how.s4_title">Покупаем корм и уход</h3>
+      <p data-i18n-html="how.s4_text">Деньги идут на еду, лекарства и вольеры. Чеки и&nbsp;отчёты публикуем в&nbsp;канале.</p>
+    </li>
+
+    <!-- Пунктирная кривая под шагами -->
+    <svg class="steps-path" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M40 140 C 200 40, 360 220, 500 100 S 800 40, 940 140 S 1140 80, 1180 120"
+            fill="none" stroke="#c79a3b" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 10"/>
+    </svg>
+  </ol>
+</section>
+
+<!-- MEET MISHKA — лента стикеров -->
+<section id="meet" class="section meet">
+  <div class="section-head">
+    <span class="kicker" data-i18n="meet.kicker">Знакомьтесь</span>
+    <h2 data-i18n-html="meet.title">Это&nbsp;— Мишка</h2>
+    <p class="muted" data-i18n="meet.subtitle">Тот самый пушистый, ради которого всё затеяно.</p>
+  </div>
+
+  <div class="sticker-strip">
+    <figure class="sticker s1"><img src="assets/m1.jpg" alt="Мишка" loading="lazy" /></figure>
+    <figure class="sticker s2"><img src="assets/m2.jpg" alt="Мишка" loading="lazy" /></figure>
+    <figure class="sticker s3"><img src="assets/m3.jpg" alt="Мишка" loading="lazy" /></figure>
+    <figure class="sticker s4"><img src="assets/m4.jpg" alt="Мишка" loading="lazy" /></figure>
+    <figure class="sticker s5"><img src="assets/m5.jpg" alt="Мишка" loading="lazy" /></figure>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why" class="section why">
+  <div class="section-head">
+    <span class="kicker" data-i18n="why.kicker">Почему $MISHKA</span>
+    <h2 data-i18n="why.title">Мем с пользой</h2>
+  </div>
+
+  <div class="cards">
+    <article class="card">
+      <div class="card-emoji" aria-hidden="true">
+        <svg viewBox="0 0 32 28"><use href="#heart"/></svg>
+      </div>
+      <h3 data-i18n="why.c1_title">Реальная помощь</h3>
+      <p data-i18n="why.c1_text">Никаких "когда-нибудь". Каждые выходные — реальная закупка корма для конкретного приюта.</p>
+    </article>
+    <article class="card">
+      <div class="card-emoji" aria-hidden="true">
+        <svg viewBox="0 0 56 56"><use href="#ton-diamond"/></svg>
+      </div>
+      <h3 data-i18n="why.c2_title">On-chain прозрачность</h3>
+      <p data-i18n-html="why.c2_text">Все потоки — в&nbsp;сети TON. Кошелёк пула публичный, транзакции легко отследить в&nbsp;Tonviewer.</p>
+    </article>
+    <article class="card">
+      <div class="card-emoji" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><use href="#paw"/></svg>
+      </div>
+      <h3 data-i18n="why.c3_title">Сообщество решает</h3>
+      <p data-i18n-html="why.c3_text">Холдеры голосуют за&nbsp;получателя помощи. Чем дольше держишь — тем сильнее голос.</p>
+    </article>
+  </div>
+</section>
+
+<!-- TRANSPARENCY / RECEIPT -->
+<section id="transparency" class="section transparency">
+  <div class="transparency-grid">
+    <div>
+      <span class="kicker" data-i18n="tr.kicker">Прозрачность</span>
+      <h2 data-i18n="tr.title">Каждый перевод — публичный</h2>
+      <p class="muted lead-soft" data-i18n-html="tr.lead">
+        Мы не&nbsp;прячем ни&nbsp;один рубль. Банковские квитанции и&nbsp;чеки из&nbsp;зоомагазинов публикуются
+        в&nbsp;Telegram-канале сразу после закупки. Это&nbsp;не&nbsp;просто слова в&nbsp;whitepaper&nbsp;— это
+        конкретные мешки корма, которые завтра окажутся в&nbsp;мисках.
+      </p>
+      <ul class="bullets">
+        <li data-i18n-html="tr.b1"><b>On-chain</b> — пул и&nbsp;вывод средств видны в&nbsp;TON</li>
+        <li data-i18n-html="tr.b2"><b>Off-chain</b> — банковские квитанции и&nbsp;чеки магазинов</li>
+        <li data-i18n-html="tr.b3"><b>В эфире</b> — фото и&nbsp;видео доставки в&nbsp;приют</li>
+      </ul>
+      <a class="btn btn-primary" href="https://t.me/mishka_charity" target="_blank" rel="noopener" data-i18n="tr.cta">Смотреть отчёты в Telegram →</a>
+    </div>
+
+    <figure class="receipt">
+      <img src="assets/receipt.jpg" alt="Банковская квитанция Ipak Yuli Bank — перевод 505 500 сум на закупку корма" loading="lazy" />
+      <figcaption data-i18n-html="tr.caption">
+        <b>Ipak Yuli Bank · 08.05.2026</b><br/>
+        Перевод <b>505 500&nbsp;сум</b> на&nbsp;закупку корма для приюта.
+        <span class="muted">Реквизиты получателя — публично в&nbsp;Telegram-отчёте.</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- BUY -->
+<section id="buy" class="section buy">
+  <div class="section-head">
+    <span class="kicker" data-i18n="buy.kicker">Купить</span>
+    <h2 data-i18n="buy.title">Поддержи приют — возьми $MISHKA</h2>
+    <p class="muted" data-i18n-html="buy.subtitle">Доступен на&nbsp;двух DEX в&nbsp;сети TON. Подключи кошелёк и&nbsp;обменяй TON на&nbsp;$MISHKA.</p>
+  </div>
+
+  <div class="dex-grid">
+    <a class="dex" target="_blank" rel="noopener"
+       href="https://app.ston.fi/swap?ft=TON&tt=EQBuwtx2m-F6_niT6r5UD4xjD0j6__nOohNKlb3U-gKybuZb">
+      <div class="dex-name">STON.fi</div>
+      <div class="dex-sub">Swap TON → $MISHKA</div>
+      <span class="dex-go" data-i18n="buy.open">Открыть ↗</span>
+    </a>
+    <a class="dex" target="_blank" rel="noopener"
+       href="https://dedust.io/swap/TON/EQBuwtx2m-F6_niT6r5UD4xjD0j6__nOohNKlb3U-gKybuZb">
+      <div class="dex-name">DeDust</div>
+      <div class="dex-sub">Swap TON → $MISHKA</div>
+      <span class="dex-go" data-i18n="buy.open">Открыть ↗</span>
+    </a>
+  </div>
+
+  <p class="disclaimer" data-i18n-html="buy.disclaimer">
+    Это мем-токен с&nbsp;благотворительной механикой. Не&nbsp;инвестиционный совет.
+    Покупай только то, что готов поддержать как донат.
+  </p>
+</section>
+
+<!-- TOKENOMICS / CONTRACT -->
+<section id="tokenomics" class="section token">
+  <div class="section-head">
+    <span class="kicker" data-i18n="ca.kicker">Контракт</span>
+    <h2 data-i18n-html="ca.title">Адрес токена в&nbsp;TON</h2>
+    <p class="muted" data-i18n-html="ca.subtitle">Сохрани адрес и проверяй любые операции в&nbsp;Tonviewer.</p>
+  </div>
+
+  <div class="ca-card">
+    <div class="ca-row">
+      <span class="ca-net">
+        <svg viewBox="0 0 56 56" class="ton-ico"><use href="#ton-diamond"/></svg>
+        TON Mainnet
+      </span>
+      <code id="caText" class="ca-text">EQBuwtx2m-F6_niT6r5UD4xjD0j6__nOohNKlb3U-gKybuZb</code>
+      <button id="copyBtn" class="btn btn-primary btn-copy" type="button">
+        <span class="copy-default" data-i18n="ca.copy">Скопировать</span>
+        <span class="copy-done" data-i18n="ca.copied">Скопировано ✓</span>
+      </button>
+    </div>
+    <div class="ca-links">
+      <a target="_blank" rel="noopener" href="https://tonviewer.com/EQBuwtx2m-F6_niT6r5UD4xjD0j6__nOohNKlb3U-gKybuZb">Tonviewer ↗</a>
+      <a target="_blank" rel="noopener" href="https://tonscan.org/address/EQBuwtx2m-F6_niT6r5UD4xjD0j6__nOohNKlb3U-gKybuZb">Tonscan ↗</a>
+      <a target="_blank" rel="noopener" href="https://www.geckoterminal.com/ton/pools?q=EQBuwtx2m-F6_niT6r5UD4xjD0j6__nOohNKlb3U-gKybuZb">GeckoTerminal ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY / FOOTER -->
+<section class="section community">
+  <div class="community-card">
+    <div>
+      <span class="kicker" data-i18n="cm.kicker">Присоединяйся</span>
+      <h2 data-i18n="cm.title">Сообщество $MISHKA</h2>
+      <p class="muted" data-i18n-html="cm.subtitle">Анонсы выходного пула, голосования и&nbsp;отчёты по&nbsp;закупкам корма.</p>
+    </div>
+    <div class="social-row">
+      <a class="social tg" href="https://t.me/mishka_charity" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9.04 15.36 8.88 19.5c.36 0 .52-.16.71-.34l1.7-1.62 3.53 2.58c.65.36 1.11.17 1.28-.6l2.32-10.86c.22-.99-.36-1.38-.99-1.15L3.5 10.45c-.97.38-.96.92-.17 1.17l3.78 1.18 8.78-5.54c.41-.27.79-.12.48.16z"/></svg>
+        <span data-i18n="cm.tg">Telegram-канал</span>
+      </a>
+      <a class="social x" href="https://x.com/mishka_charity" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2H21l-6.51 7.44L22 22h-6.789l-4.62-6.04L4.78 22H2.022l6.962-7.96L2 2h6.91l4.18 5.52zM17.06 20.18h1.51L7.02 3.72H5.4z"/></svg>
+        <span data-i18n="cm.x">X (Twitter)</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Lightbox для видео со звуком -->
+<div id="lightbox" class="lightbox" hidden>
+  <button class="lb-close" aria-label="Закрыть">×</button>
+  <div class="lb-stage">
+    <video id="lbVideo" controls playsinline preload="auto"></video>
+    <p id="lbCaption" class="lb-caption"></p>
+  </div>
+</div>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <span class="brand-mark"><svg viewBox="0 0 64 64"><use href="#paw"/></svg></span>
+      <b>$MISHKA</b>
+      <span class="muted" data-i18n-html="ft.brand">— мем-токен помощи приютам в&nbsp;TON.</span>
+    </div>
+    <div class="foot-ca">
+      <span class="muted" data-i18n="ft.ca_label">CA:</span>
+      <code>EQBuwtx2m-F6_niT6r5UD4xjD0j6__nOohNKlb3U-gKybuZb</code>
+    </div>
+    <div class="foot-meta muted" data-i18n-html="ft.meta">
+      © 2026 $MISHKA Community. Без кого — без приютов.
+    </div>
+  </div>
+</footer>
+
+<script src="i18n.js?v=5" defer></script>
+<script src="script.js?v=5" defer></script>
+</body>
+</html>
