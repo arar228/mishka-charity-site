@@ -1,127 +1,74 @@
-# $MISHKA — сайт благотворительного мем-токена в TON
+# $MISHKA · Community landing page
 
-Лендинг токена `$MISHKA` (TON). Каждая транзакция — комиссия в **Weekend Pool**, который сообщество распределяет между приютами для собак и котов: на корм, лекарства и уход.
+Bilingual static landing-page source for the MISHKA community on TON, with project
+information, photo and video galleries, and references to community transparency material.
+The original Russian and English product content is preserved.
 
-- **Telegram:** [@mishka_charity](https://t.me/mishka_charity)
-- **X (Twitter):** [@mishka_charity](https://x.com/mishka_charity)
-- **Контракт (TON):** `EQBuwtx2m-F6_niT6r5UD4xjD0j6__nOohNKlb3U-gKybuZb`
-- **Tonviewer:** https://tonviewer.com/EQBuwtx2m-F6_niT6r5UD4xjD0j6__nOohNKlb3U-gKybuZb
+**Status:** static frontend source. The page describes a charity-oriented initiative;
+this repository does not independently verify donations, transaction routing, receipts,
+beneficiaries, or the current operation of the token and external channels.
 
----
+## Implementation highlights
 
-## Стек
+- HTML / CSS / vanilla JavaScript with RU and EN dictionaries and a language switcher.
+- Language detection and persistence using `localStorage` key `mishka.lang`.
+- Contract copy control, lightbox, sticky navigation, and scroll-reveal behavior.
+- Local video files and posters with viewport-aware preloading / playback.
+- Responsive layout, browser media APIs, and lazy-loaded gallery images.
 
-Это статический сайт без билда — три файла плюс ассеты:
+## Source map
 
-```
-.
-├── index.html       # разметка
-├── styles.css       # стили (кремово-золотая палитра)
-├── i18n.js          # словари RU/EN + переключатель
-├── script.js        # copy CA, lightbox, scroll-reveal, sticky nav
-└── assets/
-    ├── favicon.svg
-    ├── mishka.jpg                # маскот в hero
-    ├── m1..m5.jpg                # фото Мишки для ленты стикеров
-    ├── v1..v4.mp4 + v1..v4.jpg   # видео приюта + постеры
-    └── receipt.jpg               # банковская квитанция
-```
+| File | Responsibility |
+| --- | --- |
+| [index.html](index.html) | Page structure, media references, and translation attributes |
+| [styles.css](styles.css) | Cream-and-gold visual system and responsive layout |
+| [i18n.js](i18n.js) | RU / EN dictionaries, language detection, and persistence |
+| [script.js](script.js) | Copy control, lightbox, media behavior, and navigation |
+| [assets/](assets/) | Mascot / gallery images, video files, posters, favicon, and receipt image |
 
-Никаких зависимостей, npm, сборки. Открывается прямо из браузера.
+## Local preview
 
----
+Requirements: Python 3 and a modern browser. From the repository root:
 
-## Локальный запуск
-
-Достаточно открыть `index.html` в браузере. Если хочешь чтобы видео и Clipboard API работали без капризов:
-
-```bash
-# Python (есть на любом Mac/Linux/Win с Python)
-python -m http.server 8000
-# → http://localhost:8000
-
-# или Node
-npx serve .
+```sh
+python -m http.server 8000 --bind 127.0.0.1
 ```
 
----
+Open `http://127.0.0.1:8000`. There is no package installation or build step.
+If Node.js is already installed, `npx serve .` is an alternative that may download a package.
+Use localhost or HTTPS for clipboard checks; video behavior also depends on browser autoplay policy.
 
-## Деплой
+## Content maintenance
 
-Сайт статический, поэтому деплой — это просто заливка содержимого папки на любой статический хостинг.
+- Edit both `I18N.ru` and `I18N.en` in `i18n.js` when changing translated copy.
+- For an additional locale, copy a dictionary, translate its values, add a `data-lang`
+  button, and register its language code in `SUPPORTED`.
+- Keep the local `v1..v4.mp4` files and matching JPG posters aligned with their cards.
+- Update the `?v=N` query versions in `index.html` when publishing changed JS / CSS.
+- Preserve media attribution. Review personal information in receipt imagery before redistribution;
+  the existing receipt asset is retained by this documentation-only change.
 
-### GitHub Pages (бесплатно, в один клик)
+## Hosting reference
 
-1. Settings → Pages
-2. **Source**: `Deploy from a branch`
-3. **Branch**: `main` / `(root)`
-4. Save → через минуту сайт по адресу `https://<username>.github.io/<repo>/`
+The deployable artifact is the static directory and `assets/`. Existing options include
+GitHub Pages (branch `main`, root directory), Netlify (empty build command, publish `.`),
+Vercel (static / Other preset), or an existing nginx static directory.
+For nginx, retain `index.html` as the index and preserve video / image paths; configure
+cache policy to match asset versioning. Deployment settings and live availability need separate verification.
 
-### Netlify (бесплатно, кастомный домен)
+## Community and contract references
 
-1. https://app.netlify.com/start → Connect to GitHub → выбираешь этот репо
-2. Build command: `(пусто)`
-3. Publish directory: `.`
-4. Deploy
+[Telegram](https://t.me/mishka_charity) · [X](https://x.com/mishka_charity) ·
+[Existing TON contract reference](https://tonviewer.com/EQBuwtx2m-F6_niT6r5UD4xjD0j6__nOohNKlb3U-gKybuZb).
+These links preserve the original project references; they are not validation of financial claims.
 
-### Vercel
+## Existing risk notice
 
-1. https://vercel.com/new → Import Git Repository → этот репо
-2. Framework preset: **Other**
-3. Output directory: `.`
-4. Deploy
+> `$MISHKA` — мем-токен с благотворительной механикой. Сайт **не является инвестиционным предложением**. Покупать стоит только то, что готов потерять — лучше относиться к этому как к донату.
 
-### Свой VPS / nginx
+## Verification and rights
 
-Просто скопируй содержимое в любую директорию, которая раздаётся nginx:
-
-```nginx
-server {
-  listen 80;
-  server_name mishka.example.com;
-  root /var/www/mishka;
-  index index.html;
-  location / { try_files $uri $uri/ /index.html; }
-  # видео — long cache
-  location ~* \.(mp4|webm|jpg|png|svg)$ {
-    expires 30d;
-    add_header Cache-Control "public, immutable";
-  }
-}
-```
-
----
-
-## Локализация
-
-Тексты лежат словарями в [`i18n.js`](./i18n.js) — два объекта `I18N.ru` и `I18N.en`. Чтобы добавить узбекский / английский / любой другой:
-
-1. Скопируй весь объект `I18N.ru` в новый ключ, например `I18N.uz`.
-2. Переведи значения.
-3. Добавь кнопку в шапку:
-   ```html
-   <button type="button" data-lang="uz" class="lang-btn">UZ</button>
-   ```
-4. Добавь `'uz'` в массив `SUPPORTED` в `i18n.js`.
-
-Выбор языка сохраняется в `localStorage` (ключ `mishka.lang`).
-
----
-
-## Кеш-бастинг при правках
-
-В `index.html` ссылки на JS/CSS идут с `?v=N`. После каждой правки CSS/JS нужно поднять номер — иначе у пользователей в кеше будет старая версия:
-
-```html
-<link rel="stylesheet" href="styles.css?v=6" />
-<script src="i18n.js?v=6" defer></script>
-<script src="script.js?v=6" defer></script>
-```
-
----
-
-## Дисклеймер
-
-`$MISHKA` — мем-токен с благотворительной механикой. Сайт **не является инвестиционным предложением**. Покупать стоит только то, что готов потерять — лучше относиться к этому как к донату.
-
-Все потоки публикуются в [Telegram-канале](https://t.me/mishka_charity): on-chain транзакции пула + банковские квитанции и чеки из зоомагазинов.
+Documentation checks cover local references, entrypoints, and JavaScript syntax. There is no
+automated test suite or deployment workflow. Browser / device QA, hosted availability, and
+financial or charity verification are outside this pass. Photos, video, branding, and Google Fonts
+retain their owners' rights; the repository does not contain a separate license file.
