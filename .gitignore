@@ -21,3 +21,18 @@ npm-debug.log*
 node_modules/
 dist/
 build/
+
+# Local secret hygiene (credentials stay outside Git)
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+.secrets/
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+*.session
+*.session-journal
